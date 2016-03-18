@@ -13,7 +13,7 @@
 </head>
 <body>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "Edit")
     </p>
     <table class="table">
         <tr>
@@ -27,6 +27,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |

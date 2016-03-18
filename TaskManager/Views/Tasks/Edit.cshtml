@@ -14,7 +14,7 @@
 </head>
 <body>
     @{
-        ViewBag.Title = Model.ID > 0 ? "Edit Hall" : "Create New Hall";
+        ViewBag.Title = Model.ID > 0 ? "Edit Task" : "Create New Task";
     }
 
     <h2>@ViewBag.Title</h2>
@@ -73,7 +73,7 @@
     }
     
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "List")
     </div>
 </body>
 </html>

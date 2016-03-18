@@ -19,13 +19,35 @@ namespace TaskManager.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(TasksEditVM model)
+        public ActionResult Edit()
         {
-             
-            return View();
+            TasksEditVM model = new TasksEditVM();
+           TryUpdateModel(model);
+
+            Task task;
+
+            if (model.ID==0)
+            {
+                task = new Task();
+            }
+            else
+            {
+                task = new TasksRepository().GetByID(model.ID);
+            }            
+
+            task.ID = model.ID;
+            task.Caption = model.Caption;
+            task.Body = model.Body;
+            task.Date = model.Date;
+            task.Time = model.Time;
+
+            new TasksRepository().Save(task);
+
+            return RedirectToAction("List");
+            
         }
 
-        [HttpGet]
+        
         public ActionResult Edit(int? id)
         {
             TasksEditVM model = new TasksEditVM();
@@ -48,6 +70,16 @@ namespace TaskManager.Controllers
 
 
             return View(model);
-        }        
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id.HasValue)
+            {
+                new TasksRepository().Delete(id.Value);                
+            }
+
+            return RedirectToAction("List");
+        }
 	}
 }
